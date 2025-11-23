@@ -4,7 +4,7 @@ const router = express.Router();
 const Reminder = require("../models/Reminder");
 const protect = require("../middleware/auth");
 
-// ✅ Create a new reminder
+// Create a new reminder
 router.post("/", protect, async (req, res) => {
   const { title, url, note, time } = req.body;
 
@@ -25,7 +25,7 @@ router.post("/", protect, async (req, res) => {
   }
 });
 
-// ✅ Get all reminders for logged-in user
+// Get all reminders for logged-in user
 router.get("/", protect, async (req, res) => {
   try {
     const reminders = await Reminder.find({ user: req.user._id }).sort({ time: 1 });
