@@ -77,17 +77,12 @@ const sendEmail = async (to, subject, htmlContent) => {
   
   try {
     const transporter = nodemailer.createTransport({
-      host: "smtp.gmail.com",
-      port: 587,
-      secure: false, // Use TLS
-      auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS,
-      },
-      tls: {
-        rejectUnauthorized: false
-      }
-    });
+    service: "gmail",
+    auth: {
+      user: process.env.EMAIL_USER,
+      pass: process.env.EMAIL_PASS, // App Password only
+    },
+  });
 
     // Verify connection
     console.log("  🔌 Verifying SMTP connection...");
